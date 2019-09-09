@@ -1,5 +1,5 @@
-import WithService from "./WithService"
+import WithBookStoreService from "./WithBookStoreService"
 
 export {
-    WithService
+    WithBookStoreService
 }
