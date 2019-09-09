@@ -1,8 +1,12 @@
 import React from "react";
 
-const Spinner = () => {
+const Spinner = ({ color }: {color?: string | undefined}) => {
+    const spinnerClasses = `spinner-border ${color && `text-${color}`}`;
+
     return (
-        <div>loading...</div>
+        <div className={spinnerClasses} role="status">
+            <span className="sr-only">Loading...</span>
+        </div>
     )
 };
 

@@ -7,25 +7,36 @@ import { WithBookStoreService } from "../HOC"
 import BookListItem from "../BookListItem";
 
 import { compose } from "../../utils"
+import Spinner from "../Spinner";
 
 interface IProps {
     books: [];
     service: {
-        getBooks: () => []
+        getBooks: () => Promise<Array<any>>
     };
     booksLoaded: (data: []) => any;
 }
 
-class BookList extends React.Component<IProps>  {
-    componentDidMount(): void {
-        const { service, booksLoaded } = this.props;
-        const data = service.getBooks();
+class BookList extends React.Component<IProps, { isLoading: boolean }>  {
+    state = {
+        isLoading: false,
+    };
 
-        booksLoaded(data);
-    }
+    componentDidMount() {
+        const { service, booksLoaded } = this.props;
+
+        this.setState({ isLoading: true });
+
+        service.getBooks()
+            .then((data: any) => {
+                booksLoaded(data);
+                this.setState({ isLoading: false });
+            });
+    };
 
     render() {
         const { books } = this.props;
+        const { isLoading } = this.state;
 
         const bookList = books.map((book:any) => {
             return (
@@ -40,7 +51,7 @@ class BookList extends React.Component<IProps>  {
 
         return (
             <div className="book-list">
-                {bookList}
+                {isLoading ? <Spinner /> : bookList}
             </div>
         )
     }

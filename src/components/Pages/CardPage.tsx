@@ -3,8 +3,6 @@ import { RouteComponentProps } from "react-router-dom";
 
 
 const CardPage = ({ match }:RouteComponentProps<{id:string | undefined}>) => {
-    console.log(match.params.id);
-
     return (
         <h1 className="h1">
             CardPage
