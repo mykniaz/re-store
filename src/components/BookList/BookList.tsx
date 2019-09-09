@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { booksLoaded } from "../../actions"
+import { booksLoaded, toggleLoading } from "../../actions"
 
 import { WithBookStoreService } from "../HOC"
 
@@ -9,34 +9,33 @@ import BookListItem from "../BookListItem";
 import { compose } from "../../utils"
 import Spinner from "../Spinner";
 
+type TActionReturns = {type: string, payload: any};
+
 interface IProps {
-    books: [];
+    books: [],
+    isLoading: boolean,
     service: {
-        getBooks: () => Promise<Array<any>>
-    };
-    booksLoaded: (data: []) => any;
+        getBooks: () => Promise<Array<any>>,
+    },
+    booksLoaded: (data: []) => TActionReturns,
+    toggleLoading: (isLoading?: boolean) => TActionReturns,
 }
 
-class BookList extends React.Component<IProps, { isLoading: boolean }>  {
-    state = {
-        isLoading: false,
-    };
-
+class BookList extends React.Component<IProps>  {
     componentDidMount() {
-        const { service, booksLoaded } = this.props;
+        const { service, toggleLoading, booksLoaded } = this.props;
 
-        this.setState({ isLoading: true });
+        toggleLoading(true);
 
         service.getBooks()
             .then((data: any) => {
                 booksLoaded(data);
-                this.setState({ isLoading: false });
+                toggleLoading(false);
             });
     };
 
     render() {
-        const { books } = this.props;
-        const { isLoading } = this.state;
+        const { books, isLoading } = this.props;
 
         const bookList = books.map((book:any) => {
             return (
@@ -57,9 +56,15 @@ class BookList extends React.Component<IProps, { isLoading: boolean }>  {
     }
 }
 
-const mapStateToProps = ({ books }: {books: []}) => ({ books });
+interface IStateProps {
+    books: [],
+    isLoading: boolean,
+    error: {} | null,
+}
+
+const mapStateToProps = ({ books, isLoading, error }:IStateProps):IStateProps => ({ books, isLoading, error });
 
 export default compose(
     WithBookStoreService(),
-    connect(mapStateToProps, { booksLoaded }),
+    connect(mapStateToProps, { booksLoaded, toggleLoading }),
 )(BookList)
