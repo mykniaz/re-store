@@ -56,7 +56,7 @@ class BookListContainer extends React.Component<IPropsContainer>  {
     }
 }
 
-const mapStateToProps = ({books, isLoading}: {books: Array<{}>, isLoading: boolean}) => ({books, isLoading});
+const mapStateToProps = ({booksList: {books, isLoading}}: {booksList: {books: Array<{}>, isLoading: boolean}}) => ({books, isLoading});
 
 const mapDispatchToProps = (dispatch: any, { service }: any) => ({
     addToOrder: (id: number) => dispatch(addToOrder(id)),

@@ -35,7 +35,23 @@ function addToOrder(id: number) {
     }
 }
 
+function removeFromOrder(id: number) {
+    return {
+        type: "REMOVE_FROM_ORDER",
+        payload: id,
+    }
+}
+
+function removeOrder(id: number) {
+    return {
+        type: "REMOVE_ORDER",
+        payload: id,
+    }
+}
+
 export {
     fetchBooks,
     addToOrder,
+    removeFromOrder,
+    removeOrder,
 };
