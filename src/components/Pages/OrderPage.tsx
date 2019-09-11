@@ -1,8 +1,25 @@
 import React from "react";
 import OrderTable from "../OrderTable";
 
+import {connect} from "react-redux"
 
-const OrderPage = () => {
+type TOrderItems = Array<{
+    id: number;
+    title: string;
+    count: number;
+    total: number;
+}>;
+
+interface IProps {
+    items: TOrderItems,
+    total: number
+    onIncrease: (id: number) => void;
+    onDecrease: (id: number) => void;
+    onDelete: (id: number) => void;
+}
+
+
+const OrderPage:React.SFC<IProps> = ({total, ...rest}) => {
     return (
         <div>
             <div className="row">
@@ -11,19 +28,27 @@ const OrderPage = () => {
                         Your order
                     </h1>
                 </div>
-            </div>k
+            </div>
             <div className="row">
                 <div className="col">
-                    <OrderTable />
+                    <OrderTable {...rest} />
                 </div>
             </div>
             <div className="row">
                 <div className="col text-right">
-                    total 300$
+                    total {total}$
                 </div>
             </div>
         </div>
     )
 };
 
-export default OrderPage;
+const mapStateToProps = ({orderItems, orderTotal}: { orderItems: TOrderItems, orderTotal: number }) => ({items: orderItems, total: orderTotal});
+
+const mapDispatchToProps = () => ({
+    onIncrease: (id:number) => {console.log(id)},
+    onDecrease: (id:number) => {console.log(id)},
+    onDelete: (id:number) => {console.log(id)},
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

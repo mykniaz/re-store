@@ -10,10 +10,11 @@ interface IProps {
         author: string,
         price: number,
         img: string,
-    }
+    },
+    onAddToOrder: () => void,
 }
 
-const BookListItem = ({book: {id, title, author, img, price}}: IProps) =>  {
+const BookListItem: React.SFC<IProps> = ({book: {id, title, author, img, price}, onAddToOrder}) =>  {
     return (
         <div className="card book-list-item">
             <div className="card-header">
@@ -40,6 +41,7 @@ const BookListItem = ({book: {id, title, author, img, price}}: IProps) =>  {
             <div className="card-footer">
                 <button
                     className="btn btn-primary"
+                    onClick={onAddToOrder}
                 >
                     Add to card
                 </button>

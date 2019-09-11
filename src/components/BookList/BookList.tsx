@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { booksLoaded, toggleLoading } from "../../actions"
+import { fetchBooks, addToOrder } from "../../actions"
 
 import { WithBookStoreService } from "../HOC"
 
@@ -9,62 +9,61 @@ import BookListItem from "../BookListItem";
 import { compose } from "../../utils"
 import Spinner from "../Spinner";
 
-type TActionReturns = {type: string, payload: any};
-
 interface IProps {
     books: [],
-    isLoading: boolean,
-    service: {
-        getBooks: () => Promise<Array<any>>,
-    },
-    booksLoaded: (data: []) => TActionReturns,
-    toggleLoading: (isLoading?: boolean) => TActionReturns,
+    onAddToOrder: (id: number) => void,
 }
 
-class BookList extends React.Component<IProps>  {
+const BookList:React.SFC<IProps> = ({ books, onAddToOrder }) => {
+    const bookList = books.map((book:any) => {
+        return (
+            <div
+                className="book-list__item mb-4"
+                key={book.id}
+            >
+                <BookListItem book={book} onAddToOrder={() => {onAddToOrder(book.id)}} />
+            </div>
+        )
+    });
+
+    return (
+        <div className="book-list">
+            {bookList}
+        </div>
+    )
+};
+
+interface IPropsContainer {
+    books: [],
+    isLoading: boolean,
+    fetchBooks: () => void,
+    addToOrder: (id: number) => void,
+}
+
+class BookListContainer extends React.Component<IPropsContainer>  {
     componentDidMount() {
-        const { service, toggleLoading, booksLoaded } = this.props;
-
-        toggleLoading(true);
-
-        service.getBooks()
-            .then((data: any) => {
-                booksLoaded(data);
-                toggleLoading(false);
-            });
+        this.props.fetchBooks();
     };
 
     render() {
         const { books, isLoading } = this.props;
 
-        const bookList = books.map((book:any) => {
-            return (
-                <div
-                    className="book-list__item mb-4"
-                    key={book.id}
-                >
-                    <BookListItem book={book} />
-                </div>
-            )
-        });
+        if (isLoading) {
+            return <Spinner />;
+        }
 
-        return (
-            <div className="book-list">
-                {isLoading ? <Spinner /> : bookList}
-            </div>
-        )
+        return <BookList books={books} onAddToOrder={(id) => {this.props.addToOrder(id)}} />;
     }
 }
 
-interface IStateProps {
-    books: [],
-    isLoading: boolean,
-    error: {} | null,
-}
+const mapStateToProps = ({books, isLoading}: {books: Array<{}>, isLoading: boolean}) => ({books, isLoading});
 
-const mapStateToProps = ({ books, isLoading, error }:IStateProps):IStateProps => ({ books, isLoading, error });
+const mapDispatchToProps = (dispatch: any, { service }: any) => ({
+    addToOrder: (id: number) => dispatch(addToOrder(id)),
+    fetchBooks: fetchBooks(dispatch, service),
+});
 
 export default compose(
     WithBookStoreService(),
-    connect(mapStateToProps, { booksLoaded, toggleLoading }),
-)(BookList)
+    connect(mapStateToProps, mapDispatchToProps),
+)(BookListContainer)
