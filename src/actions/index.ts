@@ -18,7 +18,7 @@ function booksError (error: {}) {
     }
 }
 
-const fetchBooks = (dispatch: any, service: any) => () => {
+const fetchBooks = (service: any) => () =>  (dispatch: any) => {
     dispatch(booksRequested());
 
     service.getBooks()

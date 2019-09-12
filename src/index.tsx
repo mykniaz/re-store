@@ -8,7 +8,7 @@ import ErrorBoundary from "./components/ErrorBoundry";
 import BookStoreService from "./services/BookStoreService";
 import { BookStoreServiceProvider } from "./components/ServiceContext";
 
-import store from "./store";
+import store from "./store/store";
 
 const bookStoreService = new BookStoreService();
 

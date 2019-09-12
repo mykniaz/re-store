@@ -8,6 +8,7 @@ import BookListItem from "../BookListItem";
 
 import { compose } from "../../utils"
 import Spinner from "../Spinner";
+import { bindActionCreators } from "redux";
 
 interface IProps {
     books: [],
@@ -58,10 +59,15 @@ class BookListContainer extends React.Component<IPropsContainer>  {
 
 const mapStateToProps = ({booksList: {books, isLoading}}: {booksList: {books: Array<{}>, isLoading: boolean}}) => ({books, isLoading});
 
-const mapDispatchToProps = (dispatch: any, { service }: any) => ({
-    addToOrder: (id: number) => dispatch(addToOrder(id)),
-    fetchBooks: fetchBooks(dispatch, service),
-});
+const mapDispatchToProps = (dispatch: any, { service }: any) => {
+    return bindActionCreators(
+        {
+            fetchBooks: fetchBooks(service),
+            addToOrder: addToOrder,
+        },
+        dispatch
+    );
+};
 
 export default compose(
     WithBookStoreService(),
