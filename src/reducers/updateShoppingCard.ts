@@ -14,7 +14,6 @@ const initialState: TInitialState = {
 };
 
 export default function updateShoppingCard(state: any, action: { type?: any; payload?: any }) {
-    console.log(state)
     if (state === undefined) return initialState;
 
     switch (action.type) {

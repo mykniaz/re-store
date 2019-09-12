@@ -16,8 +16,6 @@ const initialState: TInitialState = {
 };
 
 function updateBooksList(state: any, action: { type?: any; payload?: any }) {
-    console.log(state)
-
     if (state === undefined) return initialState;
 
     switch (action.type) {
