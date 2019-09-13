@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 const {
     Provider: BookStoreServiceProvider,
@@ -8,4 +8,4 @@ const {
 export {
     BookStoreServiceProvider,
     BookStoreServiceConsumer,
-}
+};

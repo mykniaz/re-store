@@ -1,9 +1,9 @@
 import {
-    BookStoreServiceProvider,
-    BookStoreServiceConsumer,
-} from "./ServiceContext"
+  BookStoreServiceProvider,
+  BookStoreServiceConsumer,
+} from './ServiceContext';
 
 export {
-    BookStoreServiceProvider,
-    BookStoreServiceConsumer,
-}
+  BookStoreServiceProvider,
+  BookStoreServiceConsumer,
+};
