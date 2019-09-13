@@ -3,6 +3,7 @@
   "linterOptions": {"exclude": ["config/**/*.js"]},
   "plugins": [{"name": "typescript-tslint-plugin"}],
   "rules": {
+    "jsx-wrap-multiline": false,
     "indent": [true, "spaces", 2],
     "variable-name": false,
     "prefer-array-literal": false,
