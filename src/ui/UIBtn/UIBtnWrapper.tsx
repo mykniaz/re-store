@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const UIBtnWrapper:React.SFC<{label?: string, children: any}> = ({label, children}) => {
     return (

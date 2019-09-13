@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header render test 1`] = `
+<header
+  className="navbar navbar-dark bg-dark mb-4"
+>
+  <a
+    aria-label="ReStore"
+    className="navbar-brand mr-2"
+    href="/"
+    onClick={[Function]}
+  >
+    ReStore
+  </a>
+  <div>
+    <span
+      className="text-light"
+    >
+      added 
+      3
+       items (
+      1488
+      $)
+    </span>
+    <a
+      className="btn btn-primary ml-4"
+      href="/order"
+      onClick={[Function]}
+      type="submit"
+    >
+      Buy
+    </a>
+  </div>
+</header>
+`;
