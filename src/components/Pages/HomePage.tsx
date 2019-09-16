@@ -3,16 +3,14 @@ import BookList from '../BookList';
 
 import { UIBtn } from '../../ui';
 
-const HomePage = () => {
-  const onClickHandler = () => console.log(123123);
-
+const HomePage: React.FC = () => {
   return (
     <div>
       <div className="row">
         <div className="col">
           <h1 className="h1">
             List of books
-            <UIBtn label={'label'} onClick={onClickHandler}>
+            <UIBtn label={'label'}>
               UI button
             </UIBtn>
           </h1>

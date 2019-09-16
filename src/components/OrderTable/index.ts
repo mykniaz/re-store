@@ -1,3 +1,3 @@
-import OrderTable from "./OrderTable";
+import OrderTable from './OrderTable';
 
 export default OrderTable;

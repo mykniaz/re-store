@@ -7,9 +7,9 @@ import { WithBookStoreService } from '../HOC';
 
 import Header from '../Header';
 
-import { HomePage, CardPage, OrderPage } from '../Pages';
+import { HomePage, OrderPage } from '../Pages';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="app">
       <div className="container">
@@ -19,10 +19,6 @@ const App = () => {
             path="/"
             exact={true}
             component={HomePage}
-          />
-          <Route
-            path="/card/:id"
-            component={CardPage}
           />
           <Route
             path="/order"

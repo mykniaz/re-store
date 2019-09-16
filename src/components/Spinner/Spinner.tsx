@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-const Spinner = ({ color }: { color?: string | undefined }) => {
+interface IProps {
+  color?: string | undefined;
+}
+
+const Spinner: React.FC<IProps> = ({ color }) => {
   const spinnerClasses = `spinner-border ${color && `text-${color}`}`;
 
   return (

@@ -19,7 +19,7 @@ interface IProps {
   onDelete: (id: number) => void;
 }
 
-const OrderPage: React.SFC<IProps> = ({ total, ...rest }) => {
+const OrderPage: React.FC<IProps> = ({ total, ...rest }) => {
   return (
     <div>
       <div className="row">

@@ -1,3 +1,3 @@
-import { UIBtn } from "./UIBtn";
+import { UIBtn } from './UIBtn';
 
 export { UIBtn };
