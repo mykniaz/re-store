@@ -3,8 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { WithBookStoreService } from '../HOC';
-
 import Header from '../Header';
 
 import { HomePage, OrderPage } from '../Pages';
@@ -30,4 +28,4 @@ const App: React.FC = () => {
   );
 };
 
-export default WithBookStoreService()(App);
+export default App;

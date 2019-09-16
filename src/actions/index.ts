@@ -1,3 +1,5 @@
+import BookStoreService from '../services/BookStoreService';
+
 function booksRequested() {
   return {
     type: 'FETCH_BOOKS_REQUEST',
@@ -18,8 +20,10 @@ function booksError(error: {}) {
   };
 }
 
-const fetchBooks = (service: any) => () => (dispatch: any) => {
+const fetchBooks = (dispatch: any) => {
   dispatch(booksRequested());
+
+  const service = new BookStoreService();
 
   service.getBooks()
     .then((data: any) => {

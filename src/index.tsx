@@ -1,26 +1,20 @@
-import React from "react";
-import ReactDom from "react-dom";
-import { Provider } from 'react-redux'
+import * as React from 'react';
+import * as ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from "./components/App";
-import ErrorBoundary from "./components/ErrorBoundry";
-import BookStoreService from "./services/BookStoreService";
-import { BookStoreServiceProvider } from "./components/ServiceContext";
+import App from './components/App';
+import ErrorBoundary from './components/ErrorBoundary';
 
-import store from "./store/store";
-
-const bookStoreService = new BookStoreService();
+import store from './store/store';
 
 ReactDom.render(
-    <Provider store={store}>
-        <ErrorBoundary>
-            <BookStoreServiceProvider value={bookStoreService}>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </BookStoreServiceProvider>
-        </ErrorBoundary>
-    </Provider>,
-    document.getElementById('root'),
+  <Provider store={store}>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ErrorBoundary>
+  </Provider>,
+  document.getElementById('root'),
 );

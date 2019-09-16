@@ -2,13 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { fetchBooks, addToOrder } from '../../actions';
 
-import { WithBookStoreService } from '../HOC';
-
 import BookListItem from '../BookListItem';
 
-import { compose } from '../../utils';
 import Spinner from '../Spinner';
-import { bindActionCreators } from 'redux';
 
 interface IProps {
   books: [];
@@ -40,8 +36,8 @@ const BookList: React.FC<IProps> = ({ books, onAddToOrder }) => {
 interface IBookListContainer {
   books: [];
   isLoading: boolean;
-  onFetchBooks: () => void;
-  onAddToOrder: (id: number) => void;
+  onFetchBooks: () => any;
+  onAddToOrder: (id: number) => any;
 }
 
 const BookListContainer: React.FC<IBookListContainer> = (
@@ -61,7 +57,7 @@ const BookListContainer: React.FC<IBookListContainer> = (
   return (
     <BookList
       books={books}
-      onAddToOrder={(id) => { onAddToOrder(id); }}
+      onAddToOrder={onAddToOrder}
     />
   );
 };
@@ -75,17 +71,12 @@ const mapStateToProps = (
   }
 );
 
-const mapDispatchToProps = (dispatch: any, { service }: any) => {
-  return bindActionCreators(
-    {
-      onAddToOrder: addToOrder,
-      onFetchBooks: fetchBooks(service),
-    },
-    dispatch,
-  );
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onAddToOrder: (id: number) => dispatch(addToOrder(id)),
+    onFetchBooks: () => fetchBooks(dispatch),
+  };
 };
 
-export default compose(
-  WithBookStoreService(),
-  connect(mapStateToProps, mapDispatchToProps),
-)(BookListContainer);
+// @ts-ignore
+export default connect(mapStateToProps, mapDispatchToProps)(BookListContainer);
