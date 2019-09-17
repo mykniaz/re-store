@@ -45,7 +45,7 @@ const OrderPage: React.FC<IProps> = ({ total, ...rest }) => {
 
 const mapStateToProps = (
   {
-      shoppingCard: { orderItems, orderTotal },
+    shoppingCard: { orderItems, orderTotal },
   }: {
     shoppingCard: { orderItems: TOrderItems, orderTotal: number },
   }) => ({
