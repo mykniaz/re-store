@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { fetchBooks, addToOrder } from '../../actions';
+import { fetchBooks, addToOrder } from 'actions';
 
-import BookListItem from '../BookListItem';
+import BookListItem from 'components/BookListItem';
 
-import Spinner from '../Spinner';
+import Spinner from 'components/Spinner';
 
 interface IProps {
   books: [];

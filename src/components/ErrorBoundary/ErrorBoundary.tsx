@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Error from '../Error';
+import Error from 'components/Error';
 
 class ErrorBoundary extends React.Component {
   public state = {

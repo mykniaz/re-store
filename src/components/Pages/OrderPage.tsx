@@ -1,8 +1,8 @@
 import * as React from 'react';
-import OrderTable from '../OrderTable';
+import OrderTable from 'components/OrderTable';
 
 import { connect } from 'react-redux';
-import { addToOrder, removeFromOrder, removeOrder } from '../../actions';
+import { addToOrder, removeFromOrder, removeOrder } from 'actions';
 
 type TOrderItems = Array<{
   id: number;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import BookList from '../BookList';
+import BookList from 'components/BookList';
 
-import { UIBtn } from '../../ui';
+import { UIBtn } from 'ui';
 
 const HomePage: React.FC = () => {
   return (

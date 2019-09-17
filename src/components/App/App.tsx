@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Header from '../Header';
+import Header from 'components/Header';
 
-import { HomePage, OrderPage } from '../Pages';
+import { HomePage, OrderPage } from 'components/Pages';
 
 const App: React.FC = () => {
   return (
