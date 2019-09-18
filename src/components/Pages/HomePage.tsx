@@ -1,8 +1,6 @@
 import * as React from 'react';
 import BookList from 'components/BookList';
 
-import { UIBtn } from 'ui';
-
 const HomePage: React.FC = () => {
   return (
     <div>
@@ -10,9 +8,6 @@ const HomePage: React.FC = () => {
         <div className="col">
           <h1 className="h1">
             List of books
-            <UIBtn label={'label'}>
-              UI button
-            </UIBtn>
           </h1>
         </div>
       </div>
