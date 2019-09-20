@@ -1,0 +1,19 @@
+{
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "re-store-develop-20190920113733-authRole",
+            "UnauthRoleArn": "arn:aws:iam::622333322458:role/re-store-develop-20190920113733-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::622333322458:role/re-store-develop-20190920113733-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "re-store-develop-20190920113733-deployment",
+            "UnauthRoleName": "re-store-develop-20190920113733-unauthRole",
+            "StackName": "re-store-develop-20190920113733",
+            "StackId": "arn:aws:cloudformation:eu-central-1:622333322458:stack/re-store-develop-20190920113733/e4155c20-db81-11e9-925f-061d64a5b024"
+        },
+        "categories": {
+            "auth": {
+                "restore0a1138d1": {}
+            }
+        }
+    }
+}

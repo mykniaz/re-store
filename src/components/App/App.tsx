@@ -34,8 +34,7 @@ interface IApp {
 const App: React.FC<IApp> = ({ authData, onLoggedIn }) => {
   React.useEffect(
     () => {
-      API
-
+      API;
 
       onLoggedIn({
         id: Number(authData.pool.clientId),
@@ -48,23 +47,22 @@ const App: React.FC<IApp> = ({ authData, onLoggedIn }) => {
   const saveNote = async() => {
     const newNote = {
       body: {
-        "NoteTitle": "My first note!",
-        "NoteContent": "This is so cool!",
-        "NoteId": this.state.noteId
-      };
+        NoteTitle: 'My first note!',
+        NoteContent: 'This is so cool!',
+      },
     };
 
-    const path = "/books";
+    const path = '/books';
 
     // Use the API module to save the note to the database
     try {
-      const apiResponse = await API.put("NotesCRUD", path, newNote)
-      console.log("response from saving note: " + apiResponse);
-      this.setState({apiResponse});
+      const apiResponse = await API.put('NotesCRUD', path, newNote);
+
+      console.log(apiResponse);
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <div className="app">

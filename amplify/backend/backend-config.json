@@ -1,0 +1,16 @@
+{
+	"auth": {
+		"restore0a1138d1": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"storage": {
+		"ReStore": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"api": {}
+}
