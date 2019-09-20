@@ -1,5 +1,7 @@
 import BookStoreService from '../services/BookStoreService';
 
+import { IUser } from '../reducer/updateUser';
+
 function booksRequested() {
   return {
     type: 'FETCH_BOOKS_REQUEST',
@@ -53,9 +55,24 @@ function removeOrder(id: number) {
   };
 }
 
+function loggedIn(userData: IUser) {
+  return {
+    type: 'USER_LOGGED_IN',
+    payload: userData,
+  };
+}
+
+function loggedOut() {
+  return {
+    type: 'USER_LOGGED_OUT',
+  };
+}
+
 export {
   fetchBooks,
   addToOrder,
   removeFromOrder,
   removeOrder,
+  loggedIn,
+  loggedOut,
 };

@@ -1,4 +1,4 @@
-interface TInitialState {
+interface IInitialState {
   orderItems: Array<{
     id: number,
     title: string,
@@ -8,7 +8,7 @@ interface TInitialState {
   orderTotal: number;
 }
 
-const initialState: TInitialState = {
+const initialState: IInitialState = {
   orderItems: [],
   orderTotal: 0,
 };

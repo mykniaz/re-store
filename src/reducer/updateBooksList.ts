@@ -1,12 +1,15 @@
+export interface IBook {
+  id: number;
+  title: string;
+  author: string;
+  price: number;
+  img: string;
+}
+
 interface IInitialState {
-  books: Array<{
-    id: number,
-    price: number,
-    title: string,
-  }>;
+  books: IBook[];
   isLoading: boolean;
   error: null | object;
-
 }
 
 const initialState: IInitialState = {
@@ -21,7 +24,6 @@ function updateBooksList(state: any, action: { type?: any; payload?: any }) {
   switch (action.type) {
     case 'FETCH_BOOKS_REQUEST':
       return {
-        ...state,
         books: [],
         isLoading: true,
         error: null,
@@ -29,7 +31,6 @@ function updateBooksList(state: any, action: { type?: any; payload?: any }) {
 
     case 'FETCH_BOOKS_SUCCESS':
       return {
-        ...state,
         books: action.payload,
         isLoading: false,
         error: null,
@@ -37,7 +38,6 @@ function updateBooksList(state: any, action: { type?: any; payload?: any }) {
 
     case 'FETCH_BOOKS_FAILURE':
       return {
-        ...state,
         books: [],
         isLoading: false,
         error: action.payload,
