@@ -1,5 +1,0 @@
-{
-    "tableName": "books",
-    "partitionKeyName": "id",
-    "partitionKeyType": "N"
-}

@@ -6,11 +6,30 @@
 			"dependsOn": []
 		}
 	},
-	"storage": {
-		"ReStore": {
-			"service": "DynamoDB",
-			"providerPlugin": "awscloudformation"
+	"storage": {},
+	"api": {
+		"ReStoreApi": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+							"userPoolConfig": {
+								"userPoolId": "authrestore0a1138d1"
+							}
+						}
+					],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "",
+							"apiKeyExpirationDays": 180
+						}
+					}
+				}
+			}
 		}
-	},
-	"api": {}
+	}
 }

@@ -1,21 +1,47 @@
+// React
 import * as React from 'react';
+
+// Router
 import { Route, Switch } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+// Components
 import Header from 'components/Header';
-
 import { HomePage, OrderPage } from 'components/Pages';
 
-import awsAmplify, { API } from 'aws-amplify';
-import awsExports from 'aws-exports';
+// Redux
+import { connect } from 'react-redux';
+import { IUser } from 'reducer/updateUser';
+import { loggedIn, loggedOut } from '../../actions';
+
+// AWS
 // @ts-ignore
 import { withAuthenticator } from 'aws-amplify-react';
-import { connect } from 'react-redux';
-import { loggedIn, loggedOut } from '../../actions';
-import { IUser } from 'reducer/updateUser';
+import { awsClient } from 'utils';
 
-awsAmplify.configure(awsExports);
+// GraphQl
+import graphqlTag from 'graphql-tag';
+import { listBooks } from '../../graphql/queries';
+import { createBook } from '../../graphql/mutations';
+
+import Amplify, { Auth } from 'aws-amplify';
+import awsExports from '../../aws-exports';
+Amplify.configure(awsExports);
+
+(async () => {
+  const result = await awsClient
+    .mutate({
+      mutation: graphqlTag(createBook),
+      variables: {
+        input: {
+          author: 'testNameBook',
+          title: 'newBook',
+          price: 234,
+          img: 'sdfsdf',
+        },
+      },
+    });
+  console.log(result.data);
+})();
 
 interface IApp {
   onLoggedIn: (object: IUser) => void;
@@ -34,8 +60,6 @@ interface IApp {
 const App: React.FC<IApp> = ({ authData, onLoggedIn }) => {
   React.useEffect(
     () => {
-      API;
-
       onLoggedIn({
         id: Number(authData.pool.clientId),
         email: authData.attributes.email,
@@ -43,26 +67,6 @@ const App: React.FC<IApp> = ({ authData, onLoggedIn }) => {
       });
     },
   );
-
-  const saveNote = async() => {
-    const newNote = {
-      body: {
-        NoteTitle: 'My first note!',
-        NoteContent: 'This is so cool!',
-      },
-    };
-
-    const path = '/books';
-
-    // Use the API module to save the note to the database
-    try {
-      const apiResponse = await API.put('NotesCRUD', path, newNote);
-
-      console.log(apiResponse);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return (
     <div className="app">
