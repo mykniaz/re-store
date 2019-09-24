@@ -55,6 +55,17 @@ function removeOrder(id: number) {
   };
 }
 
+function initUser(userData: IUser, dispatch: any) {
+  dispatch(booksRequested());
+
+  const service = new BookStoreService();
+
+  service.initUser(userData)
+    .then((data: any) => {
+      dispatch(loggedIn(data));
+    });
+}
+
 function loggedIn(userData: IUser) {
   return {
     type: 'USER_LOGGED_IN',
@@ -73,6 +84,7 @@ export {
   addToOrder,
   removeFromOrder,
   removeOrder,
+  initUser,
   loggedIn,
   loggedOut,
 };

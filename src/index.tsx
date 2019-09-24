@@ -8,6 +8,10 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 import store from './store/store';
 
+import awsAmplify from 'aws-amplify';
+import awsExports from './aws-exports';
+awsAmplify.configure(awsExports);
+
 ReactDom.render(
   <Provider store={store}>
     <ErrorBoundary>

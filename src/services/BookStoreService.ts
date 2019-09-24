@@ -1,32 +1,47 @@
-interface IData {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  img: string;
-}
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../graphql/queries';
+import * as mutations from '../graphql/mutations';
+import { IUser } from '../reducer/updateUser';
 
 export default class BookStoreService {
-  public data: IData[] = [
-    {
-      id: 1,
-      title: 'Production-Ready Microservices',
-      author: 'Susan J. Fowler',
-      price: 32,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/41yJ75gpV-L._SX381_BO1,204,203,200_.jpg',
-    },
-    {
-      id: 2,
-      title: 'Release It!',
-      author: 'Michael T. Nygard',
-      price: 45,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/419zAwJJH4L._SX415_BO1,204,203,200_.jpg',
-    },
-  ];
+  public getBooks() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const allBooks = await API.graphql(graphqlOperation(queries.listBooks));
 
-  public getBooks(): Promise<IData[]> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(this.data), 400);
+        // @ts-ignore
+        resolve(allBooks.data.listBooks.items);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  public initUser({ id, name, email }: IUser) {
+    return new Promise(async (resolve, reject) => {
+      let userData = null;
+
+      try {
+        userData = await API.graphql(graphqlOperation(queries.getUser, { id }));
+      } catch (errorData) {
+        userData = errorData;
+      }
+
+      // @ts-ignore
+      if (userData === null || userData.data.getUser === null) {
+        const newUserData = await API.graphql(graphqlOperation(mutations.createUser, {
+          input: {
+            id,
+            name,
+            email,
+          },
+        }));
+        // @ts-ignore
+        resolve(newUserData.data.items);
+      } else {
+        // @ts-ignore
+        resolve(userData.data.getUser);
+      }
     });
   }
 }

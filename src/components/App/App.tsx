@@ -10,43 +10,17 @@ import { HomePage, OrderPage } from 'components/Pages';
 
 // Redux
 import { connect } from 'react-redux';
-import { IUser } from 'reducer/updateUser';
-import { loggedIn, loggedOut } from '../../actions';
+import { initUser, loggedOut } from '../../actions';
 
 // AWS
 // @ts-ignore
 import { withAuthenticator } from 'aws-amplify-react';
-import { awsClient } from 'utils';
-
-// GraphQl
-import graphqlTag from 'graphql-tag';
-import { listBooks } from '../../graphql/queries';
-import { createBook } from '../../graphql/mutations';
-
-import Amplify, { Auth } from 'aws-amplify';
-import awsExports from '../../aws-exports';
-Amplify.configure(awsExports);
-
-(async () => {
-  const result = await awsClient
-    .mutate({
-      mutation: graphqlTag(createBook),
-      variables: {
-        input: {
-          author: 'testNameBook',
-          title: 'newBook',
-          price: 234,
-          img: 'sdfsdf',
-        },
-      },
-    });
-  console.log(result.data);
-})();
+import { IUser } from '../../reducer/updateUser';
 
 interface IApp {
-  onLoggedIn: (object: IUser) => void;
+  onUserInit: (userData: IUser) => void;
   authData: {
-    id: number;
+    id: string;
     username: string;
     attributes: {
       email: string;
@@ -57,14 +31,10 @@ interface IApp {
   };
 }
 
-const App: React.FC<IApp> = ({ authData, onLoggedIn }) => {
+const App: React.FC<IApp> = ({ authData, onUserInit }) => {
   React.useEffect(
     () => {
-      onLoggedIn({
-        id: Number(authData.pool.clientId),
-        email: authData.attributes.email,
-        name: authData.username,
-      });
+      onUserInit({ id: authData.pool.clientId, name: authData.username, email: authData.attributes.email });
     },
   );
 
@@ -88,9 +58,11 @@ const App: React.FC<IApp> = ({ authData, onLoggedIn }) => {
   );
 };
 
-const mapDispatchToProps = {
-  onLoggedIn: loggedIn,
-  onLoggedOut: loggedOut,
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onLoggedOut: () => dispatch(loggedOut),
+    onUserInit: (userData: IUser) => initUser(userData, dispatch),
+  };
 };
 
 export default withAuthenticator(connect(() => ({}), mapDispatchToProps)(App), true);
