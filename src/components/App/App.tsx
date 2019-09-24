@@ -20,7 +20,6 @@ import { IUser } from '../../reducer/updateUser';
 interface IApp {
   onUserInit: (userData: IUser) => void;
   authData: {
-    id: string;
     username: string;
     attributes: {
       email: string;
@@ -34,7 +33,11 @@ interface IApp {
 const App: React.FC<IApp> = ({ authData, onUserInit }) => {
   React.useEffect(
     () => {
-      onUserInit({ id: authData.pool.clientId, name: authData.username, email: authData.attributes.email });
+      onUserInit({
+        id: authData.username,
+        name: authData.username,
+        email: authData.attributes.email,
+      });
     },
   );
 
