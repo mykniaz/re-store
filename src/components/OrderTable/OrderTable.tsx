@@ -1,18 +1,20 @@
 import * as React from 'react';
 
+export interface IOrderTableItem {
+  id: number;
+  title: string;
+  count: number;
+  total: number;
+}
+
 interface IProps {
-  items: Array<{
-    id: number;
-    title: string;
-    count: number;
-    total: number;
-  }>;
+  items: IOrderTableItem[];
   onIncrease: (id: number) => void;
   onDecrease: (id: number) => void;
   onDelete: (id: number) => void;
 }
 
-const OrderTable: React.SFC<IProps> = ({ items, onIncrease, onDecrease, onDelete }) => {
+export const OrderTable: React.SFC<IProps> = ({ items, onIncrease, onDecrease, onDelete }) => {
   const tableRows = items.map((col, colIndex: number) => {
     return (
       <tr key={col.id}>

@@ -30,7 +30,7 @@ interface IApp {
   };
 }
 
-const App: React.FC<IApp> = ({ authData, onUserInit }) => {
+export const App: React.FC<IApp> = ({ authData, onUserInit }) => {
   React.useEffect(
     () => {
       onUserInit({

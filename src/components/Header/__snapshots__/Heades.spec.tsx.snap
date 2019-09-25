@@ -4,32 +4,56 @@ exports[`Header render test 1`] = `
 <header
   className="navbar navbar-dark bg-dark mb-4"
 >
-  <a
-    aria-label="ReStore"
-    className="navbar-brand mr-2"
-    href="/"
-    onClick={[Function]}
+  <div
+    className="container"
   >
-    ReStore
-  </a>
-  <div>
-    <span
-      className="text-light"
+    <div
+      className="row flex-grow-1"
     >
-      added 
-      3
-       items (
-      1488
-      $)
-    </span>
-    <a
-      className="btn btn-primary ml-4"
-      href="/order"
-      onClick={[Function]}
-      type="submit"
-    >
-      Buy
-    </a>
+      <div
+        className="col col-sm-4"
+      >
+        <a
+          aria-label="ReStore"
+          className="navbar-brand mr-2"
+          href="/"
+          onClick={[Function]}
+        >
+          ReStore
+        </a>
+      </div>
+      <div
+        className="col col-sm-4 text-center"
+      >
+        <div
+          className="text-light mt-2"
+        >
+          Welcome: 
+          Test User
+        </div>
+      </div>
+      <div
+        className="col col-sm-4 text-right"
+      >
+        <span
+          className="text-light"
+        >
+          added 
+          3
+           items (
+          1488
+          $)
+        </span>
+        <a
+          className="btn btn-primary ml-4"
+          href="/order"
+          onClick={[Function]}
+          type="submit"
+        >
+          Buy
+        </a>
+      </div>
+    </div>
   </div>
 </header>
 `;

@@ -27,6 +27,8 @@ export default class BookStoreService {
         userData = errorData;
       }
 
+      console.log(userData)
+
       // @ts-ignore
       if (userData === null || userData.data.getUser === null) {
         const newUserData = await API.graphql(graphqlOperation(mutations.createUser, {
@@ -42,6 +44,20 @@ export default class BookStoreService {
         // @ts-ignore
         resolve(userData.data.getUser);
       }
+    });
+  }
+
+  public addBookToOrder(userId: string, bookId: string | number) {
+    return new Promise(async (resolve, reject) => {
+      let newUser = null;
+
+      try {
+        newUser = await API.graphql(graphqlOperation(mutations.updateUser, { userId }));
+      } catch (errorData) {
+        newUser = errorData;
+      }
+
+      console.log(newUser);
     });
   }
 }

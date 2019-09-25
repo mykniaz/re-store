@@ -11,7 +11,7 @@ type Order
 @model {
   id: ID!
   user: User! @connection(name: "UserOrder")
-  books: [Book]
+  books: [Book]!
 }
 
 type User
@@ -19,6 +19,6 @@ type User
   id: ID!
   name: String!
   email: String!
-  order: Order @connection(name: "UserOrder")
+  order: Order! @connection(name: "UserOrder")
 }
 
