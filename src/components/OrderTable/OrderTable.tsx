@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import OrderTableItem from './OrderTableItem';
+
 export interface IOrderTableItem {
   id: number;
   title: string;
@@ -17,34 +19,14 @@ interface IProps {
 export const OrderTable: React.SFC<IProps> = ({ items, onIncrease, onDecrease, onDelete }) => {
   const tableRows = items.map((col, colIndex: number) => {
     return (
-      <tr key={col.id}>
-        <th scope="row">{colIndex + 1}</th>
-        <td>{col.title}</td>
-        <td>{col.count}</td>
-        <td>{col.total}$</td>
-        <td>
-          <div className="btn-group">
-            <button
-              className="btn btn-warning"
-              onClick={() => onDecrease(col.id)}
-            >
-              -
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => onIncrease(col.id)}
-            >
-              +
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={() => onDelete(col.id)}
-            >
-              Remove
-            </button>
-          </div>
-        </td>
-      </tr>
+      <OrderTableItem
+        key={col.id}
+        col={col}
+        colIndex={colIndex}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+        onDelete={onDelete}
+      />
     );
   });
 
