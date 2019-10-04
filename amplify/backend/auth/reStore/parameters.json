@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "restore0a1138d1_identitypool_0a1138d1",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "restor0a1138d1",
-    "userPoolName": "restore0a1138d1_userpool_0a1138d1",
+    "identityPoolName": "reStorePool",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "reStor169747d2",
+    "userPoolName": "reStoreUserPool",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,7 +18,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+        "name"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -28,10 +28,15 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "restor0a1138d1_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "reStor169747d2_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "restore0a1138d1",
+    "useDefault": "manual",
     "authSelections": "identityPoolAndUserPool",
+    "resourceName": "reStore",
+    "thirdPartyAuth": true,
+    "authProviders": [],
+    "triggers": "{}",
+    "hostedUI": false,
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -44,6 +49,9 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "dependsOn": []
 }

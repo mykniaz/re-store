@@ -1,35 +1,27 @@
 {
-	"auth": {
-		"restore0a1138d1": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	},
-	"storage": {},
 	"api": {
-		"ReStoreApi": {
+		"reStore": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
-					"additionalAuthenticationProviders": [
-						{
-							"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-							"userPoolConfig": {
-								"userPoolId": "authrestore0a1138d1"
-							}
-						}
-					],
+					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
 						"authenticationType": "API_KEY",
 						"apiKeyConfig": {
 							"description": "",
-							"apiKeyExpirationDays": 180
+							"apiKeyExpirationDays": "365"
 						}
 					}
 				}
 			}
+		}
+	},
+	"auth": {
+		"reStore": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	}
 }
