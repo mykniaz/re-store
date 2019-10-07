@@ -39,7 +39,7 @@ export const App: React.FC<IApp> = ({ authData, onUserInit }) => {
         email: authData.attributes.email,
       });
     },
-    [onUserInit],
+    [authData.username, authData.attributes.email, onUserInit],
   );
 
   return (
