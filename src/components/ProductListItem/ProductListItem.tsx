@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 interface IProps {
-  book: {
+  product: {
     id: number,
     img: string,
     price: number,
@@ -12,13 +12,13 @@ interface IProps {
   onAddToOrder: () => void;
 }
 
-const BookListItem: React.FC<IProps> = (
+const ProductListItem: React.FC<IProps> = (
   {
-    book:{ id, title, description, img, price },
+    product:{ id, title, description, img, price },
     onAddToOrder,
   }) => {
   return (
-    <div className="card book-list-item">
+    <div className="card product-list-item">
       <div className="card-header">
         <Link
           to={`/card/${id}`}
@@ -28,14 +28,14 @@ const BookListItem: React.FC<IProps> = (
         </Link>
       </div>
       <div className="card-body d-flex">
-        <div className="mr-4 book-list-item__image-wrapper">
+        <div className="mr-4 product-list-item__image-wrapper">
           <img
             src={img}
-            className="book-list-item__image"
+            className="product-list-item__image"
             alt={title}
           />
         </div>
-        <div className="book-list-item__text-wrapper">
+        <div className="product-list-item__text-wrapper">
           <p className="card-text">Author: {description}</p>
           <p className="card-text">Price: {price}</p>
         </div>
@@ -52,4 +52,4 @@ const BookListItem: React.FC<IProps> = (
   );
 };
 
-export default BookListItem;
+export default ProductListItem;

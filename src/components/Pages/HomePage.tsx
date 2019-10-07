@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BookList from 'components/BookList';
+import ProductList from 'components/ProductList';
 
 const HomePage: React.FC = () => {
   return (
@@ -7,13 +7,13 @@ const HomePage: React.FC = () => {
       <div className="row">
         <div className="col">
           <h1 className="h1">
-            List of books
+            List of Products
           </h1>
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <BookList/>
+          <ProductList/>
         </div>
       </div>
     </div>

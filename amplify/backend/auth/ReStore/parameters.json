@@ -1,6 +1,6 @@
 {
     "identityPoolName": "ReStoreUserPool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "ReStorbcaab06e",
     "userPoolName": "ReStoreUserPool",
     "autoVerifiedAttributes": [

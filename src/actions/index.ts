@@ -1,37 +1,37 @@
-import BookStoreService from '../services/BookStoreService';
+import Service from '../services/Service';
 
 import { IUser } from '../reducer/updateUser';
 
-function booksRequested() {
+function productsRequested() {
   return {
-    type: 'FETCH_BOOKS_REQUEST',
+    type: 'FETCH_PRODUCT_REQUEST',
   };
 }
 
-function booksLoaded(newBooks: []) {
+function productsLoaded(newProducts: []) {
   return {
-    type: 'FETCH_BOOKS_SUCCESS',
-    payload: newBooks,
+    type: 'FETCH_PRODUCT_SUCCESS',
+    payload: newProducts,
   };
 }
 
-function booksError(error: {}) {
+function productsError(error: {}) {
   return {
-    type: 'FETCH_BOOKS_FAILURE',
+    type: 'FETCH_PRODUCT_FAILURE',
     payload: error,
   };
 }
 
-const fetchBooks = (dispatch: any) => {
-  dispatch(booksRequested());
+const fetchProducts = (dispatch: any) => {
+  dispatch(productsRequested);
 
-  const service = new BookStoreService();
+  const service = new Service();
 
-  service.getBooks()
+  service.getProducts()
     .then((data: any) => {
-      dispatch(booksLoaded(data));
+      dispatch(productsLoaded(data));
     })
-    .catch((error: {}) => dispatch(booksError(error)));
+    .catch((error: {}) => dispatch(productsError(error)));
 };
 
 function addToOrder(id: number) {
@@ -56,9 +56,9 @@ function removeOrder(id: number) {
 }
 
 function initUser(userData: IUser, dispatch: any) {
-  dispatch(booksRequested());
+  dispatch(productsRequested());
 
-  const service = new BookStoreService();
+  const service = new Service();
 
   service.initUser(userData)
     .then((data: any) => {
@@ -80,7 +80,7 @@ function loggedOut() {
 }
 
 export {
-  fetchBooks,
+  fetchProducts,
   addToOrder,
   removeFromOrder,
   removeOrder,

@@ -3,6 +3,7 @@ type User @model {
   name: String!
   email: String!
   order: Order @connection(name: "UserOrder")
+  role: Role
 }
 type Order @model {
   id: ID!
@@ -18,8 +19,13 @@ type Item @model {
 }
 type Product @model {
   id: ID!
-  price: Int!
+  img: String
   title: String!
-  image: String
+  price: Int!
   description: String
+}
+
+enum Role {
+  User
+  Admin
 }

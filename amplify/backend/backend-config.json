@@ -23,5 +23,11 @@
 				}
 			}
 		}
+	},
+	"storage": {
+		"ReStore": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }

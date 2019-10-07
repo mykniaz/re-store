@@ -20,6 +20,6 @@ type Product @model {
   id: ID!
   price: Int!
   title: String!
-  image: String
+  img: String
   description: String
 }

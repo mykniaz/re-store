@@ -13,11 +13,13 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         id
         name
         email
+        role
       }
       items {
         nextToken
       }
     }
+    role
   }
 }
 `;
@@ -33,11 +35,13 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         id
         name
         email
+        role
       }
       items {
         nextToken
       }
     }
+    role
   }
 }
 `;
@@ -53,11 +57,13 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         id
         name
         email
+        role
       }
       items {
         nextToken
       }
     }
+    role
   }
 }
 `;
@@ -73,6 +79,7 @@ export const createOrder = `mutation CreateOrder($input: CreateOrderInput!) {
         id
         total
       }
+      role
     }
     items {
       items {
@@ -96,6 +103,7 @@ export const updateOrder = `mutation UpdateOrder($input: UpdateOrderInput!) {
         id
         total
       }
+      role
     }
     items {
       items {
@@ -119,6 +127,7 @@ export const deleteOrder = `mutation DeleteOrder($input: DeleteOrderInput!) {
         id
         total
       }
+      role
     }
     items {
       items {
@@ -136,9 +145,9 @@ export const createItem = `mutation CreateItem($input: CreateItemInput!) {
     total
     product {
       id
-      price
+      img
       title
-      image
+      price
       description
     }
     order {
@@ -148,6 +157,7 @@ export const createItem = `mutation CreateItem($input: CreateItemInput!) {
         id
         name
         email
+        role
       }
       items {
         nextToken
@@ -162,9 +172,9 @@ export const updateItem = `mutation UpdateItem($input: UpdateItemInput!) {
     total
     product {
       id
-      price
+      img
       title
-      image
+      price
       description
     }
     order {
@@ -174,6 +184,7 @@ export const updateItem = `mutation UpdateItem($input: UpdateItemInput!) {
         id
         name
         email
+        role
       }
       items {
         nextToken
@@ -188,9 +199,9 @@ export const deleteItem = `mutation DeleteItem($input: DeleteItemInput!) {
     total
     product {
       id
-      price
+      img
       title
-      image
+      price
       description
     }
     order {
@@ -200,6 +211,7 @@ export const deleteItem = `mutation DeleteItem($input: DeleteItemInput!) {
         id
         name
         email
+        role
       }
       items {
         nextToken
@@ -211,9 +223,9 @@ export const deleteItem = `mutation DeleteItem($input: DeleteItemInput!) {
 export const createProduct = `mutation CreateProduct($input: CreateProductInput!) {
   createProduct(input: $input) {
     id
-    price
+    img
     title
-    image
+    price
     description
   }
 }
@@ -221,9 +233,9 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
 export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!) {
   updateProduct(input: $input) {
     id
-    price
+    img
     title
-    image
+    price
     description
   }
 }
@@ -231,9 +243,9 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
 export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!) {
   deleteProduct(input: $input) {
     id
-    price
+    img
     title
-    image
+    price
     description
   }
 }

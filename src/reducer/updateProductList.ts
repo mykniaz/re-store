@@ -1,5 +1,5 @@
-export interface IBook {
-  id: number;
+export interface IProduct {
+  id?: number;
   title: string;
   description: string;
   price: number;
@@ -7,45 +7,45 @@ export interface IBook {
 }
 
 interface IInitialState {
-  books: IBook[];
+  products: IProduct[];
   isLoading: boolean;
   error: null | object;
 }
 
 const initialState: IInitialState = {
-  books: [],
+  products: [],
   isLoading: false,
   error: null,
 };
 
-function updateBooksList(state: any, action: { type?: any; payload?: any }) {
+function updateProductList(state: any, action: { type?: any; payload?: any }) {
   if (state === undefined) return initialState;
 
   switch (action.type) {
-    case 'FETCH_BOOKS_REQUEST':
+    case 'FETCH_PRODUCTS_REQUEST':
       return {
-        books: [],
+        products: [],
         isLoading: true,
         error: null,
       };
 
-    case 'FETCH_BOOKS_SUCCESS':
+    case 'FETCH_PRODUCTS_SUCCESS':
       return {
-        books: action.payload,
+        products: action.payload,
         isLoading: false,
         error: null,
       };
 
-    case 'FETCH_BOOKS_FAILURE':
+    case 'FETCH_PRODUCTS_FAILURE':
       return {
-        books: [],
+        products: [],
         isLoading: false,
         error: action.payload,
       };
 
     default:
-      return state.booksList;
+      return state.productList;
   }
 }
 
-export default updateBooksList;
+export default updateProductList;
