@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 interface IProps {
   book: {
     id: number,
-    title: string,
-    author: string,
-    price: number,
     img: string,
+    price: number,
+    title: string,
+    description: string,
   };
   onAddToOrder: () => void;
 }
 
 const BookListItem: React.FC<IProps> = (
   {
-    book:{ id, title, author, img, price },
+    book:{ id, title, description, img, price },
     onAddToOrder,
   }) => {
   return (
@@ -36,7 +36,7 @@ const BookListItem: React.FC<IProps> = (
           />
         </div>
         <div className="book-list-item__text-wrapper">
-          <p className="card-text">Author: {author}</p>
+          <p className="card-text">Author: {description}</p>
           <p className="card-text">Price: {price}</p>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default class BookStoreService {
   public getBooks() {
     return new Promise(async (resolve, reject) => {
       try {
-        const allBooks = await API.graphql(graphqlOperation(queries.listBooks));
+        const allBooks = await API.graphql(graphqlOperation(queries.listProducts));
 
         // @ts-ignore
         resolve(allBooks.data.listBooks.items);
@@ -27,7 +27,7 @@ export default class BookStoreService {
         userData = errorData;
       }
 
-      console.log(userData)
+      console.log(userData);
 
       // @ts-ignore
       if (userData === null || userData.data.getUser === null) {
