@@ -1,16 +1,24 @@
-type Blog @model {
+type User @model {
   id: ID!
   name: String!
-  posts: [Post] @connection(name: "BlogPosts")
+  order: Order! @connection(name: "UserOrder")
 }
-type Post @model {
+
+type Order @model {
+  id: ID!
+  total: Int!
+  user: User @connection(name: "UserOrder")
+  items: [Item!]! @connection(name: "OrderItem")
+}
+
+type Item @model {
+  id: ID!
+  total: Int!
+  product: Product!
+  order: Order @connection(name: "OrderItem")
+}
+
+type Product @model {
   id: ID!
   title: String!
-  blog: Blog @connection(name: "BlogPosts")
-  comments: [Comment] @connection(name: "PostComments")
-}
-type Comment @model {
-  id: ID!
-  content: String
-  post: Post @connection(name: "PostComments")
 }
