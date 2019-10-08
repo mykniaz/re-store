@@ -5,21 +5,13 @@ export type CreateUserInput = {
   id?: string | null,
   name: string,
   email: string,
-  role?: Role | null,
   userOrderId?: string | null,
 };
-
-export enum Role {
-  User = "User",
-  Admin = "Admin",
-}
-
 
 export type UpdateUserInput = {
   id: string,
   name?: string | null,
   email?: string | null,
-  role?: Role | null,
   userOrderId?: string | null,
 };
 
@@ -61,17 +53,17 @@ export type DeleteItemInput = {
 
 export type CreateProductInput = {
   id?: string | null,
-  img?: string | null,
-  title: string,
   price: number,
+  title: string,
+  img?: string | null,
   description?: string | null,
 };
 
 export type UpdateProductInput = {
   id: string,
-  img?: string | null,
-  title?: string | null,
   price?: number | null,
+  title?: string | null,
+  img?: string | null,
   description?: string | null,
 };
 
@@ -83,7 +75,6 @@ export type ModelUserFilterInput = {
   id?: ModelIDFilterInput | null,
   name?: ModelStringFilterInput | null,
   email?: ModelStringFilterInput | null,
-  role?: ModelRoleFilterInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
   not?: ModelUserFilterInput | null,
@@ -113,11 +104,6 @@ export type ModelStringFilterInput = {
   notContains?: string | null,
   between?: Array< string | null > | null,
   beginsWith?: string | null,
-};
-
-export type ModelRoleFilterInput = {
-  eq?: Role | null,
-  ne?: Role | null,
 };
 
 export type ModelOrderFilterInput = {
@@ -150,9 +136,9 @@ export type ModelItemFilterInput = {
 
 export type ModelProductFilterInput = {
   id?: ModelIDFilterInput | null,
-  img?: ModelStringFilterInput | null,
-  title?: ModelStringFilterInput | null,
   price?: ModelIntFilterInput | null,
+  title?: ModelStringFilterInput | null,
+  img?: ModelStringFilterInput | null,
   description?: ModelStringFilterInput | null,
   and?: Array< ModelProductFilterInput | null > | null,
   or?: Array< ModelProductFilterInput | null > | null,
@@ -178,14 +164,12 @@ export type CreateUserMutation = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -208,14 +192,12 @@ export type UpdateUserMutation = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -238,14 +220,12 @@ export type DeleteUserMutation = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -268,7 +248,6 @@ export type CreateOrderMutation = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -301,7 +280,6 @@ export type UpdateOrderMutation = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -334,7 +312,6 @@ export type DeleteOrderMutation = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -360,9 +337,9 @@ export type CreateItemMutation = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -374,7 +351,6 @@ export type CreateItemMutation = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -396,9 +372,9 @@ export type UpdateItemMutation = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -410,7 +386,6 @@ export type UpdateItemMutation = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -432,9 +407,9 @@ export type DeleteItemMutation = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -446,7 +421,6 @@ export type DeleteItemMutation = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -464,9 +438,9 @@ export type CreateProductMutation = {
   createProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };
@@ -479,9 +453,9 @@ export type UpdateProductMutation = {
   updateProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };
@@ -494,9 +468,9 @@ export type DeleteProductMutation = {
   deleteProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };
@@ -520,14 +494,12 @@ export type GetUserQuery = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -550,7 +522,6 @@ export type ListUsersQuery = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -575,7 +546,6 @@ export type GetOrderQuery = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -607,7 +577,6 @@ export type ListOrdersQuery = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -630,9 +599,9 @@ export type GetItemQuery = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -644,7 +613,6 @@ export type GetItemQuery = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -670,9 +638,9 @@ export type ListItemsQuery = {
       product:  {
         __typename: "Product",
         id: string,
-        img: string | null,
-        title: string,
         price: number,
+        title: string,
+        img: string | null,
         description: string | null,
       },
       order:  {
@@ -693,9 +661,9 @@ export type GetProductQuery = {
   getProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };
@@ -712,9 +680,9 @@ export type ListProductsQuery = {
     items:  Array< {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     } | null > | null,
     nextToken: string | null,
@@ -736,14 +704,12 @@ export type OnCreateUserSubscription = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -762,14 +728,12 @@ export type OnUpdateUserSubscription = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -788,14 +752,12 @@ export type OnDeleteUserSubscription = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
         nextToken: string | null,
       } | null,
     } | null,
-    role: Role | null,
   } | null,
 };
 
@@ -814,7 +776,6 @@ export type OnCreateOrderSubscription = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -843,7 +804,6 @@ export type OnUpdateOrderSubscription = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -872,7 +832,6 @@ export type OnDeleteOrderSubscription = {
         id: string,
         total: number,
       } | null,
-      role: Role | null,
     } | null,
     items:  {
       __typename: "ModelItemConnection",
@@ -894,9 +853,9 @@ export type OnCreateItemSubscription = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -908,7 +867,6 @@ export type OnCreateItemSubscription = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -926,9 +884,9 @@ export type OnUpdateItemSubscription = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -940,7 +898,6 @@ export type OnUpdateItemSubscription = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -958,9 +915,9 @@ export type OnDeleteItemSubscription = {
     product:  {
       __typename: "Product",
       id: string,
-      img: string | null,
-      title: string,
       price: number,
+      title: string,
+      img: string | null,
       description: string | null,
     },
     order:  {
@@ -972,7 +929,6 @@ export type OnDeleteItemSubscription = {
         id: string,
         name: string,
         email: string,
-        role: Role | null,
       } | null,
       items:  {
         __typename: "ModelItemConnection",
@@ -986,9 +942,9 @@ export type OnCreateProductSubscription = {
   onCreateProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };
@@ -997,9 +953,9 @@ export type OnUpdateProductSubscription = {
   onUpdateProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };
@@ -1008,9 +964,9 @@ export type OnDeleteProductSubscription = {
   onDeleteProduct:  {
     __typename: "Product",
     id: string,
-    img: string | null,
-    title: string,
     price: number,
+    title: string,
+    img: string | null,
     description: string | null,
   } | null,
 };

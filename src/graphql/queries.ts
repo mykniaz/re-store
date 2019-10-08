@@ -13,13 +13,11 @@ export const getUser = `query GetUser($id: ID!) {
         id
         name
         email
-        role
       }
       items {
         nextToken
       }
     }
-    role
   }
 }
 `;
@@ -37,7 +35,6 @@ export const listUsers = `query ListUsers(
         id
         total
       }
-      role
     }
     nextToken
   }
@@ -55,7 +52,6 @@ export const getOrder = `query GetOrder($id: ID!) {
         id
         total
       }
-      role
     }
     items {
       items {
@@ -80,7 +76,6 @@ export const listOrders = `query ListOrders(
         id
         name
         email
-        role
       }
       items {
         nextToken
@@ -96,9 +91,9 @@ export const getItem = `query GetItem($id: ID!) {
     total
     product {
       id
-      img
-      title
       price
+      title
+      img
       description
     }
     order {
@@ -108,7 +103,6 @@ export const getItem = `query GetItem($id: ID!) {
         id
         name
         email
-        role
       }
       items {
         nextToken
@@ -128,9 +122,9 @@ export const listItems = `query ListItems(
       total
       product {
         id
-        img
-        title
         price
+        title
+        img
         description
       }
       order {
@@ -145,9 +139,9 @@ export const listItems = `query ListItems(
 export const getProduct = `query GetProduct($id: ID!) {
   getProduct(id: $id) {
     id
-    img
-    title
     price
+    title
+    img
     description
   }
 }
@@ -160,9 +154,9 @@ export const listProducts = `query ListProducts(
   listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      img
-      title
       price
+      title
+      img
       description
     }
     nextToken

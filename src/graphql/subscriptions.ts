@@ -13,13 +13,11 @@ export const onCreateUser = `subscription OnCreateUser {
         id
         name
         email
-        role
       }
       items {
         nextToken
       }
     }
-    role
   }
 }
 `;
@@ -35,13 +33,11 @@ export const onUpdateUser = `subscription OnUpdateUser {
         id
         name
         email
-        role
       }
       items {
         nextToken
       }
     }
-    role
   }
 }
 `;
@@ -57,13 +53,11 @@ export const onDeleteUser = `subscription OnDeleteUser {
         id
         name
         email
-        role
       }
       items {
         nextToken
       }
     }
-    role
   }
 }
 `;
@@ -79,7 +73,6 @@ export const onCreateOrder = `subscription OnCreateOrder {
         id
         total
       }
-      role
     }
     items {
       items {
@@ -103,7 +96,6 @@ export const onUpdateOrder = `subscription OnUpdateOrder {
         id
         total
       }
-      role
     }
     items {
       items {
@@ -127,7 +119,6 @@ export const onDeleteOrder = `subscription OnDeleteOrder {
         id
         total
       }
-      role
     }
     items {
       items {
@@ -145,9 +136,9 @@ export const onCreateItem = `subscription OnCreateItem {
     total
     product {
       id
-      img
-      title
       price
+      title
+      img
       description
     }
     order {
@@ -157,7 +148,6 @@ export const onCreateItem = `subscription OnCreateItem {
         id
         name
         email
-        role
       }
       items {
         nextToken
@@ -172,9 +162,9 @@ export const onUpdateItem = `subscription OnUpdateItem {
     total
     product {
       id
-      img
-      title
       price
+      title
+      img
       description
     }
     order {
@@ -184,7 +174,6 @@ export const onUpdateItem = `subscription OnUpdateItem {
         id
         name
         email
-        role
       }
       items {
         nextToken
@@ -199,9 +188,9 @@ export const onDeleteItem = `subscription OnDeleteItem {
     total
     product {
       id
-      img
-      title
       price
+      title
+      img
       description
     }
     order {
@@ -211,7 +200,6 @@ export const onDeleteItem = `subscription OnDeleteItem {
         id
         name
         email
-        role
       }
       items {
         nextToken
@@ -223,9 +211,9 @@ export const onDeleteItem = `subscription OnDeleteItem {
 export const onCreateProduct = `subscription OnCreateProduct {
   onCreateProduct {
     id
-    img
-    title
     price
+    title
+    img
     description
   }
 }
@@ -233,9 +221,9 @@ export const onCreateProduct = `subscription OnCreateProduct {
 export const onUpdateProduct = `subscription OnUpdateProduct {
   onUpdateProduct {
     id
-    img
-    title
     price
+    title
+    img
     description
   }
 }
@@ -243,9 +231,9 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
 export const onDeleteProduct = `subscription OnDeleteProduct {
   onDeleteProduct {
     id
-    img
-    title
     price
+    title
+    img
     description
   }
 }

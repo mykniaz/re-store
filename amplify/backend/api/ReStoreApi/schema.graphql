@@ -1,17 +1,16 @@
-type User @model {
+type User @model @aws_iam @aws_cognito_user_pools {
   id: ID!
   name: String!
   email: String!
   order: Order @connection(name: "UserOrder")
-  role: Role
 }
-type Order @model {
+type Order @model @aws_iam @aws_cognito_user_pools {
   id: ID!
   total: Int!
   user: User @connection(name: "UserOrder")
   items: [Item!]! @connection(name: "OrderItem")
 }
-type Item @model {
+type Item @model @aws_iam @aws_cognito_user_pools {
   id: ID!
   total: Int!
   product: Product!
@@ -19,13 +18,8 @@ type Item @model {
 }
 type Product @model {
   id: ID!
-  img: String
-  title: String!
   price: Int!
+  title: String!
+  img: String
   description: String
-}
-
-enum Role {
-  User
-  Admin
 }
